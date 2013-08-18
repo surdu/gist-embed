@@ -10,12 +10,13 @@ $(function(){
       url,
       file,
       line,
-      data = {};
+      data = {},
+      baseurl = '//gist.github.com';
 
     id              = $elem.attr('id') || '';
     file            = $elem.attr('data-file');
     line            = $elem.attr('data-line');
-    
+
     if(file){
       data.file = file;
       splittedFileName = file.split('.').join('-');
@@ -26,13 +27,13 @@ $(function(){
 
     //make block level so loading text shows properly
     $elem.css('display', 'block');
-    
+
     //get the numeric id from the id attribute of the element holder
     id = id.substr(0, gistMarkerId.length) === gistMarkerId ? id.replace(gistMarkerId, '') : null;
 
     //make sure result is a numeric id
     if(!isNaN(parseInt(id, 10))){
-      url = 'https://gist.github.com/' + id + '.json';
+      url = baseurl + '/' + id + '.json';
       //loading
       $elem.html('Loading gist ' + url + (data.file ? ', file: ' + data.file : '') + '...');
       //request the json version of this gist
@@ -51,7 +52,7 @@ $(function(){
 
               l.type = "text/css";
               l.rel = "stylesheet";
-              l.href = response.stylesheet;
+              l.href = baseurl + response.stylesheet;
               head.insertBefore(l, head.firstChild);
             }
 
