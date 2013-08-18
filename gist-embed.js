@@ -111,7 +111,7 @@ function getLineNumbers(lineRangeString){
       }
     }
     else if(range.length == 1){
-      lineNumbers.push(parseInt(range[0], 20));
+      lineNumbers.push(parseInt(range[0], 10));
     }
   }
   return lineNumbers;
