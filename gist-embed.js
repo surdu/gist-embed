@@ -1,6 +1,7 @@
 //author: Blair Vanderhoof
 //https://github.com/blairvanderhoof/gist-embed
 $(function(){
+  'use strict';
   var gistMarkerId = 'gist-';
 
   //find all code elements containing "gist-" the id attribute.
@@ -100,17 +101,17 @@ $(function(){
 });
 
 function getLineNumbers(lineRangeString){
-  var lineNumbers = new Array();
+  var lineNumbers = [];
   var lineNumberSections = lineRangeString.split(',');
   for(var k = 0; k < lineNumberSections.length; k++){
     var range = lineNumberSections[k].split('-');
     if(range.length == 2){
-      for(var i = parseInt(range[0]); i <= range[1]; i++){
+      for(var i = parseInt(range[0], 10); i <= range[1]; i++){
         lineNumbers.push(i);
       }
     }
     else if(range.length == 1){
-      lineNumbers.push(parseInt(range[0]));
+      lineNumbers.push(parseInt(range[0], 20));
     }
   }
   return lineNumbers;
