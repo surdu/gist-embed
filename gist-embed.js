@@ -20,7 +20,7 @@ $(function(){
 
     if(file){
       data.file = file;
-      splittedFileName = file.split('.').join('-');
+      var splittedFileName = file.split('.').join('-');
     }
 
     //if the id doesn't begin with 'gist-', then ignore the code block
