@@ -1,6 +1,7 @@
 //author: Blair Vanderhoof
 //https://github.com/blairvanderhoof/gist-embed
 $(function(){
+  'use strict';
   var gistMarkerId = 'gist-';
 
   //find all code elements containing "gist-" the id attribute.
@@ -10,12 +11,13 @@ $(function(){
       url,
       file,
       line,
-      data = {};
+      data = {},
+      baseurl = '//gist.github.com';
 
     id              = $elem.attr('id') || '';
     file            = $elem.attr('data-file');
     line            = $elem.attr('data-line');
-    
+
     if(file){
       data.file = file;
       splittedFileName = file.split('.').join('-');
@@ -26,13 +28,13 @@ $(function(){
 
     //make block level so loading text shows properly
     $elem.css('display', 'block');
-    
+
     //get the numeric id from the id attribute of the element holder
     id = id.substr(0, gistMarkerId.length) === gistMarkerId ? id.replace(gistMarkerId, '') : null;
 
     //make sure result is a numeric id
     if(!isNaN(parseInt(id, 10))){
-      url = 'https://gist.github.com/' + id + '.json';
+      url = baseurl + '/' + id + '.json';
       //loading
       $elem.html('Loading gist ' + url + (data.file ? ', file: ' + data.file : '') + '...');
       //request the json version of this gist
@@ -51,7 +53,7 @@ $(function(){
 
               l.type = "text/css";
               l.rel = "stylesheet";
-              l.href = response.stylesheet;
+              l.href = baseurl + response.stylesheet;
               head.insertBefore(l, head.firstChild);
             }
 
@@ -66,7 +68,7 @@ $(function(){
                 }
               });
 
-              lineNumber = 1;
+              var lineNumber = 1;
               $('#' + random).find('.line-number').each(function(index){
                 if(($.inArray(index + 1, lineNumbers)) == -1){
                   $(this).remove();
@@ -99,17 +101,17 @@ $(function(){
 });
 
 function getLineNumbers(lineRangeString){
-  var lineNumbers = new Array();
+  var lineNumbers = [];
   var lineNumberSections = lineRangeString.split(',');
   for(var k = 0; k < lineNumberSections.length; k++){
     var range = lineNumberSections[k].split('-');
     if(range.length == 2){
-      for(var i = parseInt(range[0]); i <= range[1]; i++){
+      for(var i = parseInt(range[0], 10); i <= range[1]; i++){
         lineNumbers.push(i);
       }
     }
     else if(range.length == 1){
-      lineNumbers.push(parseInt(range[0]));
+      lineNumbers.push(parseInt(range[0], 10));
     }
   }
   return lineNumbers;
