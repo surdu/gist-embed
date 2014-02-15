@@ -14,9 +14,9 @@ $(function(){
       data = {},
       baseurl = '//gist.github.com';
 
-    id              = $elem.attr('id') || '';
-    file            = $elem.attr('data-file');
-    line            = $elem.attr('data-line');
+    id   = $elem.attr('id') || '';
+    file = $elem.attr('data-file');
+    line = $elem.attr('data-line');
 
     if(file){
       data.file = file;
@@ -39,6 +39,10 @@ $(function(){
       $elem.html('Loading gist ' + url + (data.file ? ', file: ' + data.file : '') + '...');
       //request the json version of this gist
       $.ajax({
+        type: 'GET',
+        async: true,
+        jsonpCallback: 'myCallback',
+        contentType: "application/json",
         url: url,
         data: data,
         dataType: 'jsonp',
@@ -90,7 +94,10 @@ $(function(){
             $elem.html('Failed loading gist ' + url);
           }
         },
-        error: function(){
+        error: function(error_object, status, message){
+          console.log(error_object);
+          console.log(status);
+          console.log(message);
           $elem.html('Failed loading gist ' + url);
         }
       });
@@ -116,3 +123,5 @@ function getLineNumbers(lineRangeString){
   }
   return lineNumbers;
 }
+
+function myCallback(response){}
