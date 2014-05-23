@@ -28,8 +28,8 @@
  - You can put a range like "2-5", or single line numbers separated with commas like "11,20", or mix of both like "2-5,11,10-14,20"
  - Spaces are not allowed in data-line value
 
-### To avoid line numbers in view, you can use data-showLinenumbers attribute. To hide line numbers set this attribute to "false"
-    <code id="gist-4672365" data-file="2.java" data-line="2-5,10-14,11,20" data-showLinenumbers="false"></code>
+### To avoid line numbers in view, you can use data-showLineNumbers attribute. To hide line numbers set this attribute to "false"
+    <code id="gist-4672365" data-file="2.java" data-line="2-5,10-14,11,20" data-showLineNumbers="false"></code>
     
      This code will hide the line numbers at left side of your code.
     
