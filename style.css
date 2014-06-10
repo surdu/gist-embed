@@ -1,0 +1,18 @@
+.gist-file {
+    background-color: #f8f8f8;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+    color: #333333;
+    font-family: Consolas, 'Liberation Mono', Courier, monospace;
+    font-size: 13px;
+    line-height: 19px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    overflow: auto;
+    padding: 6px 10px;
+    word-wrap: normal;
+}
