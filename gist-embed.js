@@ -90,7 +90,7 @@ function myCallback(response, timestamp){
 
       l.type = "text/css";
       l.rel = "stylesheet";
-      l.href = baseurl + response.stylesheet;
+      l.href = response.stylesheet;
       head.insertBefore(l, head.firstChild);
     }
 
